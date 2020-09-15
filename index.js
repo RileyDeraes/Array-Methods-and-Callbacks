@@ -118,11 +118,58 @@ Parameters:
  * callback function getYears
  */
 
-function getWinnersByYear(/* code here */) {
-
+//In an actual example, cb1 would be getWinners, cb2 would be getYears, cb3 would be getFinals, and data would be fifaData.
+function getWinnersByYear(cb1,cb2,cb3,data) {
+    let winners = cb1(cb3,data); //Gets the winners from the function above.
+    let years  = cb2(cb3,data); //Gets the years from the function above.
+    winners.forEach((item,index) => {
+        console.log(`In ${years[index]}, ${item} won the world cup!`) //Logs the winners and their respective years.
+    });
 };
 
-getWinnersByYear();
+console.log(getWinnersByYear(getWinners, getYears, getFinals, fifaData));
+
+
+
+/* All older code starts here, but is needed for the real world example. 
+function getFinals(data) {
+    return data.filter(item => 
+        (item.Stage === "Final"));
+};
+const theFinals = getFinals(fifaData);
+
+function getYears() {
+    const years = [];
+    (fifaData).map(item => years.push(item.Year) )
+    return years;
+};
+
+function getWinners(fifaData) {
+    let winners = [];
+
+    (theFinals).forEach(item => {
+        if (item["Home Team Goals"] > item["Away Team Goals"]) {
+            winners.push(item["Home Team Name"])
+        } else{
+            winners.push(item["Away Team Name"]) 
+        }
+    })
+    return winners;  
+}
+*/
+
+//The edited, static code:
+
+function getWinnersByYear(getWinners, getYears, getFinals, fifaData) {
+    let winners = getWinners(getFinals,fifaData); //Gets the winners from the function above.
+    let years  = getYears(getFinals,fifaData); //Gets the years from the function above.
+    winners.forEach((item,index) => {
+        console.log(`In ${years[index]}, ${item} won the world cup!`)
+    });
+};
+
+console.log(getWinnersByYear(getWinners, getYears, getFinals, fifaData));
+
 
 /* Task 6: Write a function called `getAverageGoals` that accepts a parameter `data` and returns the the average number of home team goals and away team goals scored per match (Hint: use .reduce and do this in 2 steps) */
 
