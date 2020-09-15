@@ -36,7 +36,7 @@ console.log(`Winner of 2014 world cup final: ${fifaData[828]["Win conditions"]}`
 
 function getFinals(data) {
     return data.filter(item => 
-        (item.Stage === "Final")) //Filters out everything that doesn't have "Final" as its Stage, since we only want data on the Finals.
+        (item.Stage === "Final")); //Filters out everything that doesn't have "Final" as its Stage, since we only want data on the Finals.
 };
 
 console.log(getFinals(fifaData));
@@ -44,8 +44,8 @@ console.log(getFinals(fifaData));
 /* Task 3: Implement a higher-order function called `getYears` that accepts the callback function `getFinals`, and returns an array called `years` containing all of the years in the dataset */
 
 function getYears(callback) {
-    const years = [];
-    callback(data).map(item => years.push(item.Year) )
+    const years = []; 
+    callback(data).map(item => years.push(item.Year) ) //Pushes all the years to the new array.
     return years;
 };
 
@@ -62,15 +62,54 @@ function getYears() {
 console.log(getYears(fifaData));
 
 
+
+
 /* Task 4: Implement a higher-order function called `getWinners`, that accepts the callback function `getFinals()` and determine the winner (home or away) of each `finals` game. Return the name of all winning countries in an array called `winners` */ 
 
-function getWinners(/* code here */) {
+function getWinners(callback) {
+    const winners = [];
 
-    /* code here */
+    callback().forEach(item => {
+        if (item["Home Team Goals"] > item["Away Team Goals"]) {
+            winners.push(item["Home Team Name"])
+        } else{
+            winners.push(item["Away Team Name"]) //If the home team scored more goals, they're the winners, so they get added. And vice versa.
+        }
+    })
+    return winners;  
+}
+
 
 };
 
 getWinners();
+
+//The actual usable code that shows all the finals winners from fifaData:
+
+function getFinals(data) {
+
+    const finalsFifa = data.filter(item => 
+        (item.Stage === "Final")); 
+        return finalsFifa;
+
+  
+};
+const theFinals = getFinals(fifaData);
+
+function getWinners(fifaData) {
+    let winners = [];
+
+    (theFinals).forEach(item => {
+        if (item["Home Team Goals"] > item["Away Team Goals"]) {
+            winners.push(item["Home Team Name"])
+        } else{
+            winners.push(item["Away Team Name"]) 
+        }
+    })
+    return winners;  
+}
+
+console.log(`The winners of all the finals are: ${getWinners(fifaData)}`);
 
 /* Task 5: Implement a higher-order function called `getWinnersByYear` that accepts the following parameters and returns a set of strings "In {year}, {country} won the world cup!" 
 
