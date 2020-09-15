@@ -31,13 +31,15 @@ console.log(`Winner of 2014 world cup final: ${fifaData[828]["Win conditions"]}`
 
 //This isn't very feasible though, because scrolling through such a long list can be tedious, especially when trying to pin-point the exact data. (Although CTRL+F came in handy 😂)
 
+
 /* Task 2: Create a function called  getFinals that takes `data` as an argument and returns an array of objects with only finals data */
 
-function getFinals(/* code here */) {
-
-    /* code here */
-
+function getFinals(data) {
+    return data.filter(item => 
+        (item.Stage === "Final")) //Filters out everything that doesn't have "Final" as its Stage, since we only want data on the Finals.
 };
+
+console.log(getFinals(fifaData));
 
 /* Task 3: Implement a higher-order function called `getYears` that accepts the callback function `getFinals`, and returns an array called `years` containing all of the years in the dataset */
 
