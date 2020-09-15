@@ -1,7 +1,7 @@
 import { fifaData } from './fifa.js';
 console.log(fifaData);
 
-console.log('its working');
+console.log("It's working!");
 // ⚽️ M  V P ⚽️ //
 
 /* Task 1: Investigate the data above. Practice accessing data by console.log-ing the following pieces of data 
@@ -12,6 +12,18 @@ console.log('its working');
 (d) Away Team goals for 2014 world cup final
 (e) Winner of 2014 world cup final */
 
+const fifaDataResults = fifaData.filter(item => item.Year === 2014 && item.Stage === "Final"); //Because it's all for the 2014 WC Finals, so filter.
+console.log(`Home Team name for 2014 world cup final: ${fifaDataResults[0]["Home Team Name"]}`);
+console.log(`Away Team name for 2014 world cup final${fifaDataResults[0]["Away Team Name"]}`);
+console.log(`Home Team goals for 2014 world cup final: ${fifaDataResults[0]["Home Team Goals"]}`);
+console.log(`Away Team goals for 2014 world cup final: ${fifaDataResults[0]["Away Team Goals"]}`);
+console.log(`Winner of 2014 world cup final: ${fifaDataResults[0]["Win conditions"]}`);
+
+//It's possible to do without filtering.
+
+console.log(`Winner of 2014 world cup final: ${fifaData[828]["Win conditions"]}`);
+
+//This isn't very feasible though, because scrolling through such a long list can be tedious, especially when trying to pin-point the exact data. (Although CTRL+F came in handy 😂)
 
 /* Task 2: Create a function called  getFinals that takes `data` as an argument and returns an array of objects with only finals data */
 
