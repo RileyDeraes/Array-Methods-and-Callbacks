@@ -12,7 +12,13 @@ console.log("It's working!");
 (d) Away Team goals for 2014 world cup final
 (e) Winner of 2014 world cup final */
 
-const fifaDataResults = fifaData.filter(item => item.Year === 2014 && item.Stage === "Final"); //Because it's all for the 2014 WC Finals, so filter.
+const fifaDataResults = fifaData.filter((item) => {
+    return item.Year === 2014 && item.Stage === "Final"
+});
+
+//Here's the shorter version:  const fifaDataResults = fifaData.filter(item => item.Year === 2014 && item.Stage === "Final"); 
+//I prefer the longer version because it's easier to understand at a glance, but maybe I just haven't coded long enough! 😂
+//Because it's all for the 2014 WC Finals, so filter.
 console.log(`Home Team name for 2014 world cup final: ${fifaDataResults[0]["Home Team Name"]}`);
 console.log(`Away Team name for 2014 world cup final${fifaDataResults[0]["Away Team Name"]}`);
 console.log(`Home Team goals for 2014 world cup final: ${fifaDataResults[0]["Home Team Goals"]}`);
