@@ -59,11 +59,11 @@ console.log(getYears(getFinals, fifaData));
 function getWinners(callback, data) {
     const winners = [];
 
-    callback(data).forEach(item => {
-        if (item["Home Team Goals"] > item["Away Team Goals"]) {
-            winners.push(item["Home Team Name"])
+    callback(data).forEach(country => {
+        if (country["Home Team Goals"] > country["Away Team Goals"]) {
+            winners.push(country["Home Team Name"])
         } else{
-            winners.push(item["Away Team Name"]) 
+            winners.push(country["Away Team Name"]) 
         } //If the home team scored more goals, they're the winners, so they get added. And vice versa.
     })
     return winners;
@@ -81,8 +81,8 @@ Parameters:
 function getWinnersByYear(callback1, callback2, callback3, data) {
     let winners = callback1(callback3, data); //Gets the winners from the function above.
     let years  = callback2(callback3, data); //Gets the years from the function above.
-    winners.forEach((item, index) => {
-        console.log(`In ${years[index]}, ${item} won the world cup!`); //Logs the winners and their respective years.
+    winners.forEach((country, index) => {
+        console.log(`In ${years[index]}, ${country} won the world cup!`); //Logs the winners and their respective years.
     });
 };
 
