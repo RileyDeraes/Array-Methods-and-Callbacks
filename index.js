@@ -62,7 +62,7 @@ function getWinners(callback, data) {
     callback(data).forEach(country => {
         if (country["Home Team Goals"] > country["Away Team Goals"]) {
             winners.push(country["Home Team Name"])
-        } else{
+        } else {
             winners.push(country["Away Team Name"]) 
         } //If the home team scored more goals, they're the winners, so they get added. And vice versa.
     })
@@ -78,9 +78,9 @@ Parameters:
  * callback function getYears
  */
 
-function getWinnersByYear(callback1, callback2, callback3, data) {
-    let winners = callback1(callback3, data); //Gets the winners from the function above.
-    let years  = callback2(callback3, data); //Gets the years from the function above.
+function getWinnersByYear(callbackOne, callbackTwo, callbackThree, data) {
+    let winners = callbackOne(callbackThree, data); //Gets the winners from the function above.
+    let years  = callbackTwo(callbackThree, data); //Gets the years from the function above.
     winners.forEach((country, index) => {
         console.log(`In ${years[index]}, ${country} won the world cup!`); //Logs the winners and their respective years.
     });
